@@ -3,996 +3,1134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌴 방콕 여행 — 2025.04.30–05.04</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<title>방콕 여행 🌴</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --gold: #C9A84C;
-    --gold-light: #F0D080;
-    --dark: #0D0D0D;
-    --dark2: #1A1A1A;
-    --dark3: #242424;
-    --card: #1E1E1E;
-    --border: #333;
-    --text: #E8E0D0;
-    --muted: #888;
-    --accent: #E8734A;
-    --teal: #3ABCB1;
-    --sky: #4FA8D8;
+    --sky: #E8F4FD;
+    --sky2: #C8E8F8;
+    --sky3: #90CBF0;
+    --ocean: #2196C4;
+    --ocean-dark: #1565A0;
+    --temple-gold: #D4A843;
+    --temple-warm: #E8C26A;
+    --temple-stone: #8B7355;
+    --dawn-pink: #F4A0A0;
+    --dawn-orange: #F0956A;
+    --white: #FFFFFF;
+    --off-white: #F8FAFB;
+    --text-primary: #1A2332;
+    --text-secondary: #5A7080;
+    --text-muted: #8BA0B0;
+    --border: rgba(33,150,196,0.15);
+    --border-strong: rgba(33,150,196,0.3);
+    --card-bg: rgba(255,255,255,0.85);
+    --radius: 16px;
+    --radius-sm: 10px;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
 
   body {
-    font-family: 'Noto Sans KR', sans-serif;
-    background: var(--dark);
-    color: var(--text);
+    font-family: -apple-system, 'SF Pro Display', 'SF Pro Text', 'Noto Sans KR', sans-serif;
+    background: var(--sky);
+    color: var(--text-primary);
     min-height: 100vh;
     overflow-x: hidden;
   }
 
-  /* === HEADER === */
-  .hero {
-    position: relative;
-    padding: 60px 40px 40px;
-    background: linear-gradient(135deg, #0D0D0D 0%, #1a1208 50%, #0D0D0D 100%);
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -60px; right: -60px;
-    width: 400px; height: 400px;
-    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+  /* === BACKGROUND === */
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(33,150,196,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 90% 80%, rgba(212,168,67,0.1) 0%, transparent 60%),
+      linear-gradient(180deg, #E8F6FF 0%, #F0FAFF 40%, #EAF5F0 100%);
     pointer-events: none;
   }
-  .hero-eyebrow {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(36px, 7vw, 72px);
-    font-weight: 900;
-    line-height: 1;
-    color: var(--gold-light);
-    text-shadow: 0 0 60px rgba(201,168,76,0.3);
-    margin-bottom: 8px;
-  }
-  .hero-sub {
-    font-size: 14px;
-    color: var(--muted);
-    font-weight: 300;
-    margin-bottom: 24px;
-  }
-  .hero-meta {
-    display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .meta-pill {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(201,168,76,0.1);
-    border: 1px solid rgba(201,168,76,0.3);
-    border-radius: 100px;
-    padding: 6px 14px;
-    font-size: 12px;
-    color: var(--gold);
-    font-family: 'Space Mono', monospace;
+
+  /* Decorative Wat Arun silhouette */
+  .temple-deco {
+    position: fixed;
+    bottom: 0; right: 0;
+    width: 320px; height: 380px;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* === LAYOUT === */
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 340px;
-    gap: 0;
-    max-width: 1400px;
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
     margin: 0 auto;
-  }
-  @media (max-width: 900px) {
-    .main { grid-template-columns: 1fr; }
-    .sidebar { order: -1; }
+    padding: 0 20px 40px;
   }
 
-  /* === SCHEDULE PANEL === */
-  .schedule-panel {
-    padding: 32px 40px;
-    border-right: 1px solid var(--border);
+  /* === HERO === */
+  .hero {
+    padding: 48px 0 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
   }
-
-  .section-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: var(--gold);
+  .hero-left {}
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ocean);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    background: rgba(33,150,196,0.1);
+    border: 1px solid rgba(33,150,196,0.2);
+    border-radius: 100px;
+    padding: 5px 14px;
+    margin-bottom: 14px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+  .hero-title span {
+    background: linear-gradient(135deg, var(--ocean), var(--temple-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: -0.2px;
+  }
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .pill {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+  }
+  .booking-badge {
+    background: linear-gradient(135deg, var(--ocean-dark), var(--ocean));
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+
+  /* === GRID === */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 16px;
+    align-items: start;
+  }
+  @media(max-width: 768px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .sidebar { order: -1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  }
+  @media(max-width: 500px) {
+    .sidebar { grid-template-columns: 1fr; }
+  }
+
+  /* === CARDS === */
+  .glass-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 18px 12px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-header-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background: linear-gradient(135deg, rgba(33,150,196,0.15), rgba(212,168,67,0.15));
+  }
+  .card-header-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+
+  /* === SCHEDULE === */
+  .schedule-wrap { padding: 16px 18px; }
+
+  .day-block { margin-bottom: 24px; }
+  .day-block:last-child { margin-bottom: 0; }
+
+  .day-title-row {
     display: flex;
     align-items: center;
     gap: 10px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--border), transparent);
-  }
-
-  /* === DAY CARDS === */
-  .day-block {
-    margin-bottom: 32px;
-    animation: fadeUp 0.5s ease both;
-  }
-  .day-block:nth-child(1) { animation-delay: 0.05s; }
-  .day-block:nth-child(2) { animation-delay: 0.1s; }
-  .day-block:nth-child(3) { animation-delay: 0.15s; }
-  .day-block:nth-child(4) { animation-delay: 0.2s; }
-  .day-block:nth-child(5) { animation-delay: 0.25s; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .day-header {
-    display: flex;
-    align-items: baseline;
-    gap: 12px;
-    margin-bottom: 14px;
-  }
-  .day-date {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--gold-light);
-  }
-  .day-label {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 300;
-  }
-  .day-hotel-badge {
-    margin-left: auto;
-    font-size: 11px;
-    font-family: 'Space Mono', monospace;
-    color: var(--teal);
-    background: rgba(58,188,177,0.1);
-    border: 1px solid rgba(58,188,177,0.25);
-    border-radius: 4px;
-    padding: 3px 8px;
-  }
-
-  .timeline {
-    position: relative;
-    padding-left: 24px;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 7px; top: 8px; bottom: 8px;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--gold), var(--border) 80%, transparent);
-  }
-
-  .event {
-    position: relative;
     margin-bottom: 10px;
-    background: var(--card);
-    border: 1px solid var(--border);
+  }
+  .day-number {
+    width: 32px; height: 32px;
     border-radius: 10px;
-    padding: 12px 14px;
+    background: linear-gradient(135deg, var(--ocean), var(--ocean-dark));
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    transition: border-color 0.2s, transform 0.2s;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: -0.5px;
+  }
+  .day-info { flex: 1; }
+  .day-date-txt {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+  }
+  .day-label-txt {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+  .day-hotel-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 100px;
+    letter-spacing: 0.3px;
+  }
+  .ht-teal { background: rgba(26,188,156,0.12); color: #0E9E7A; border: 1px solid rgba(26,188,156,0.25); }
+  .ht-gold { background: rgba(212,168,67,0.12); color: #B5891E; border: 1px solid rgba(212,168,67,0.25); }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 16px;
+    border-left: 1.5px solid var(--border-strong);
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .ev-card {
+    position: relative;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
     cursor: default;
   }
-  .event:hover {
-    border-color: rgba(201,168,76,0.4);
-    transform: translateX(2px);
+  .ev-card:hover {
+    transform: translateX(3px);
+    border-color: var(--border-strong);
+    box-shadow: 0 4px 16px rgba(33,150,196,0.1);
   }
-  .event::before {
+  .ev-card::before {
     content: '';
     position: absolute;
-    left: -20px;
-    top: 16px;
+    left: -20px; top: 50%;
+    transform: translateY(-50%);
     width: 8px; height: 8px;
     border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--dark);
+    border: 2px solid var(--sky);
   }
-  .event.flight::before { background: var(--sky); }
-  .event.hotel-check::before { background: var(--teal); }
-  .event.activity::before { background: var(--accent); }
-  .event.meal::before { background: #A8E063; }
-  .event.free::before { background: var(--muted); }
+  .ev-card.type-flight::before { background: var(--ocean); }
+  .ev-card.type-hotel::before  { background: #1ABC9C; }
+  .ev-card.type-activity::before { background: var(--temple-gold); }
+  .ev-card.type-meal::before   { background: #E84393; }
+  .ev-card.type-free::before   { background: var(--text-muted); }
 
-  .event-time {
-    font-family: 'Space Mono', monospace;
+  .ev-time {
     font-size: 11px;
-    color: var(--muted);
-    min-width: 42px;
-    padding-top: 2px;
-  }
-  .event-body { flex: 1; }
-  .event-name {
-    font-size: 14px;
     font-weight: 500;
-    color: var(--text);
-    margin-bottom: 2px;
+    color: var(--text-muted);
+    min-width: 36px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.3px;
   }
-  .event-desc {
-    font-size: 12px;
-    color: var(--muted);
-    font-weight: 300;
-  }
-  .event-icon {
-    font-size: 18px;
-    line-height: 1;
-    margin-top: 1px;
-  }
-  .event-tag {
-    font-family: 'Space Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 2px 6px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    align-self: flex-start;
-    margin-top: 2px;
-  }
-  .tag-flight { background: rgba(79,168,216,0.15); color: var(--sky); }
-  .tag-hotel  { background: rgba(58,188,177,0.15); color: var(--teal); }
-  .tag-food   { background: rgba(168,224,99,0.15); color: #A8E063; }
-  .tag-spot   { background: rgba(232,115,74,0.15); color: var(--accent); }
-  .tag-free   { background: rgba(136,136,136,0.15); color: var(--muted); }
-
-  /* Add event button */
-  .add-event-btn {
-    width: 100%;
-    border: 1px dashed var(--border);
-    background: transparent;
-    color: var(--muted);
+  .ev-icon {
+    width: 30px; height: 30px;
     border-radius: 8px;
-    padding: 9px;
-    font-size: 12px;
-    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .icon-flight   { background: rgba(33,150,196,0.1); }
+  .icon-hotel    { background: rgba(26,188,156,0.1); }
+  .icon-activity { background: rgba(212,168,67,0.1); }
+  .icon-meal     { background: rgba(232,67,147,0.1); }
+  .icon-free     { background: rgba(139,160,176,0.1); }
+
+  .ev-body { flex: 1; min-width: 0; }
+  .ev-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ev-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ev-actions { display: flex; align-items: center; gap: 5px; flex-shrink: 0; }
+
+  /* Map button */
+  .map-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--ocean);
+    background: rgba(33,150,196,0.08);
+    border: 1px solid rgba(33,150,196,0.2);
+    border-radius: 6px;
+    padding: 4px 8px;
     cursor: pointer;
-    margin-top: 4px;
+    transition: all 0.15s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .map-btn:hover {
+    background: rgba(33,150,196,0.15);
+    border-color: var(--ocean);
+    transform: scale(1.03);
+  }
+  .map-btn svg { width: 10px; height: 10px; }
+
+  .ev-tag {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 5px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .tag-flight   { background: rgba(33,150,196,0.1); color: var(--ocean); }
+  .tag-hotel    { background: rgba(26,188,156,0.1); color: #0E9E7A; }
+  .tag-food     { background: rgba(232,67,147,0.1); color: #E84393; }
+  .tag-activity { background: rgba(212,168,67,0.1); color: #B5891E; }
+  .tag-free     { background: rgba(139,160,176,0.1); color: var(--text-muted); }
+
+  .add-btn {
+    width: 100%;
+    background: transparent;
+    border: 1.5px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
+    margin-top: 2px;
+    font-family: -apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif;
   }
-  .add-event-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(201,168,76,0.05);
+  .add-btn:hover {
+    border-color: var(--ocean);
+    color: var(--ocean);
+    background: rgba(33,150,196,0.04);
   }
 
   /* === SIDEBAR === */
-  .sidebar {
-    padding: 32px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
+  .sidebar { display: flex; flex-direction: column; gap: 12px; }
 
-  /* Flight Summary */
-  .info-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px;
+  .flight-seg {
+    padding: 4px 0;
+    border-bottom: 1px solid var(--border);
   }
-  .info-card-title {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: var(--gold);
+  .flight-seg:last-child { border-bottom: none; }
+  .flight-seg-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin-bottom: 6px;
+    padding: 10px 16px 0;
   }
-  .flight-row {
+  .f-row {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 10px;
-    font-size: 13px;
+    padding: 6px 16px;
+    transition: background 0.15s;
   }
-  .flight-code {
-    font-family: 'Space Mono', monospace;
+  .f-row:hover { background: rgba(33,150,196,0.04); }
+  .f-code {
     font-size: 10px;
-    color: var(--sky);
-    background: rgba(79,168,216,0.1);
-    padding: 2px 6px;
-    border-radius: 3px;
-    min-width: 52px;
+    font-weight: 600;
+    background: rgba(33,150,196,0.1);
+    color: var(--ocean);
+    padding: 3px 7px;
+    border-radius: 5px;
+    min-width: 44px;
     text-align: center;
+    font-variant-numeric: tabular-nums;
   }
-  .flight-route {
+  .f-route {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 6px;
-    font-size: 13px;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 500;
   }
-  .airport { font-weight: 700; color: var(--text); }
-  .flight-arrow { color: var(--muted); font-size: 10px; }
-  .flight-time {
-    font-family: 'Space Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
+  .f-ap { color: var(--text-primary); }
+  .f-arrow { color: var(--text-muted); font-size: 9px; }
+  .f-time { font-size: 11px; color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
-  .hotel-row {
+  .hotel-item {
     display: flex;
     gap: 10px;
-    margin-bottom: 12px;
-    padding-bottom: 12px;
+    padding: 10px 16px;
     border-bottom: 1px solid var(--border);
   }
-  .hotel-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .hotel-icon { font-size: 24px; }
-  .hotel-info {}
-  .hotel-name { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
-  .hotel-dates { font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; }
-  .hotel-stars { font-size: 11px; color: var(--gold); margin-top: 2px; }
+  .hotel-item:last-child { border-bottom: none; }
+  .hotel-emoji { font-size: 22px; }
+  .hotel-name { font-size: 13px; font-weight: 600; color: var(--text-primary); letter-spacing: -0.3px; }
+  .hotel-dates { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+  .hotel-stars { font-size: 11px; color: var(--temple-gold); margin-top: 2px; }
 
-  /* === AI CHAT === */
-  .chat-box {
-    background: var(--dark2);
+  /* === CHAT === */
+  .chat-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: var(--radius);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     height: 420px;
   }
   .chat-header {
     padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(33,150,196,0.08), rgba(212,168,67,0.06));
     border-bottom: 1px solid var(--border);
-    background: var(--dark3);
     display: flex;
     align-items: center;
     gap: 10px;
   }
   .chat-avatar {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--gold), var(--accent));
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--ocean), var(--temple-gold));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     flex-shrink: 0;
   }
-  .chat-title { font-size: 13px; font-weight: 600; color: var(--text); }
-  .chat-subtitle { font-size: 11px; color: var(--muted); }
-  .chat-status {
+  .chat-hdr-title { font-size: 13px; font-weight: 600; letter-spacing: -0.3px; }
+  .chat-hdr-sub { font-size: 11px; color: var(--text-muted); }
+  .chat-online {
     margin-left: auto;
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: #4CAF50;
-    box-shadow: 0 0 6px #4CAF50;
-  }
-
-  .chat-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 14px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    scroll-behavior: smooth;
-  }
-  .chat-messages::-webkit-scrollbar { width: 4px; }
-  .chat-messages::-webkit-scrollbar-track { background: transparent; }
-  .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-  .msg {
-    display: flex;
-    gap: 8px;
-    max-width: 95%;
-  }
-  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
-  .msg-bubble {
-    padding: 9px 12px;
-    border-radius: 12px;
-    font-size: 12.5px;
-    line-height: 1.5;
-  }
-  .msg.ai .msg-bubble {
-    background: var(--dark3);
-    border: 1px solid var(--border);
-    color: var(--text);
-    border-radius: 4px 12px 12px 12px;
-  }
-  .msg.user .msg-bubble {
-    background: linear-gradient(135deg, rgba(201,168,76,0.25), rgba(201,168,76,0.1));
-    border: 1px solid rgba(201,168,76,0.3);
-    color: var(--text);
-    border-radius: 12px 4px 12px 12px;
-  }
-  .msg-avatar {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    margin-top: 2px;
-  }
-  .msg.ai .msg-avatar { background: linear-gradient(135deg, var(--gold), var(--accent)); }
-  .msg.user .msg-avatar { background: var(--dark3); border: 1px solid var(--border); }
-
-  .typing-indicator {
-    display: none;
     align-items: center;
     gap: 4px;
+    font-size: 10px;
+    color: #1ABC9C;
+    font-weight: 500;
+  }
+  .online-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #1ABC9C;
+    animation: pulse-dot 2s infinite;
+  }
+  @keyframes pulse-dot {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .chat-msgs {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    scroll-behavior: smooth;
+  }
+  .chat-msgs::-webkit-scrollbar { width: 3px; }
+  .chat-msgs::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
+
+  .msg { display: flex; gap: 6px; max-width: 95%; }
+  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+  .msg-av {
+    width: 22px; height: 22px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .msg.ai .msg-av {
+    background: linear-gradient(135deg, var(--ocean), var(--temple-gold));
+    color: white;
+  }
+  .msg.user .msg-av {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+  .bubble {
+    padding: 8px 11px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    letter-spacing: -0.2px;
+  }
+  .msg.ai .bubble {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px 12px 12px 12px;
+    color: var(--text-primary);
+  }
+  .msg.user .bubble {
+    background: linear-gradient(135deg, var(--ocean), var(--ocean-dark));
+    color: white;
+    border-radius: 12px 4px 12px 12px;
+  }
+
+  .typing-dots {
+    display: flex;
+    gap: 3px;
+    align-items: center;
     padding: 10px 12px;
-    background: var(--dark3);
+    background: white;
     border: 1px solid var(--border);
     border-radius: 4px 12px 12px 12px;
     width: fit-content;
   }
-  .typing-indicator.active { display: flex; }
-  .dot {
+  .td {
     width: 5px; height: 5px;
     border-radius: 50%;
-    background: var(--muted);
-    animation: blink 1.2s infinite;
+    background: var(--text-muted);
+    animation: td-blink 1.2s infinite;
   }
-  .dot:nth-child(2) { animation-delay: 0.2s; }
-  .dot:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes blink {
-    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+  .td:nth-child(2) { animation-delay: 0.2s; }
+  .td:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes td-blink {
+    0%,80%,100% { opacity: 0.3; transform: scale(0.85); }
     40% { opacity: 1; transform: scale(1); }
   }
 
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 6px 12px;
+    border-top: 1px solid var(--border);
+  }
+  .chip {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border-strong);
+    background: white;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: -apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif;
+  }
+  .chip:hover {
+    background: rgba(33,150,196,0.08);
+    border-color: var(--ocean);
+    color: var(--ocean);
+  }
+
   .chat-input-row {
-    padding: 10px 12px;
+    padding: 8px 10px;
     border-top: 1px solid var(--border);
     display: flex;
-    gap: 8px;
-    background: var(--dark3);
+    gap: 7px;
+    background: rgba(255,255,255,0.8);
   }
-  .chat-input {
+  .chat-in {
     flex: 1;
-    background: var(--dark);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
     padding: 8px 12px;
-    font-size: 12.5px;
-    color: var(--text);
-    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 13px;
+    color: var(--text-primary);
+    background: white;
+    font-family: -apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif;
     resize: none;
     outline: none;
     line-height: 1.4;
     max-height: 80px;
     transition: border-color 0.2s;
   }
-  .chat-input:focus { border-color: rgba(201,168,76,0.5); }
-  .chat-input::placeholder { color: var(--muted); }
+  .chat-in:focus { border-color: var(--ocean); }
+  .chat-in::placeholder { color: var(--text-muted); }
   .send-btn {
-    background: linear-gradient(135deg, var(--gold), var(--accent));
-    border: none;
-    border-radius: 8px;
     width: 36px; height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--ocean), var(--ocean-dark));
+    color: white;
+    font-size: 14px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
     flex-shrink: 0;
     align-self: flex-end;
-    transition: opacity 0.2s, transform 0.15s;
+    transition: all 0.2s cubic-bezier(0.34,1.56,0.64,1);
   }
-  .send-btn:hover { opacity: 0.85; transform: scale(1.05); }
-  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .send-btn:hover { transform: scale(1.08); }
+  .send-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
 
-  /* === SUGGESTIONS === */
-  .suggestions {
+  /* === API KEY BANNER === */
+  .api-banner {
+    background: linear-gradient(135deg, rgba(212,168,67,0.1), rgba(240,149,106,0.1));
+    border: 1px solid rgba(212,168,67,0.3);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #8B6914;
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 0 12px 10px;
-  }
-  .suggestion-chip {
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 100px;
-    border: 1px solid var(--border);
-    background: var(--dark);
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  .suggestion-chip:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(201,168,76,0.05);
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
   }
 
-  /* === RESPONSIVE === */
-  @media (max-width: 600px) {
-    .hero { padding: 40px 20px 28px; }
-    .schedule-panel { padding: 24px 20px; }
-    .sidebar { padding: 24px 20px; }
+  /* === MAP MODAL === */
+  .map-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .map-modal-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .map-modal {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 560px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .map-modal-overlay.open .map-modal {
+    transform: scale(1) translateY(0);
+  }
+  .map-modal-header {
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .map-modal-title { font-size: 15px; font-weight: 600; flex: 1; letter-spacing: -0.4px; }
+  .map-close-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .map-close-btn:hover { background: var(--sky2); }
+  .map-frame-wrap { position: relative; padding-top: 56.25%; }
+  .map-frame-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  .map-open-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ocean);
+    text-decoration: none;
+    border-top: 1px solid var(--border);
+    transition: background 0.15s;
+    font-family: -apple-system, 'SF Pro Text', 'Noto Sans KR', sans-serif;
+  }
+  .map-open-btn:hover { background: rgba(33,150,196,0.06); }
+
+  /* Animations */
+  .day-block {
+    animation: fadeUp 0.4s ease both;
+  }
+  .day-block:nth-child(1) { animation-delay: 0.05s; }
+  .day-block:nth-child(2) { animation-delay: 0.1s; }
+  .day-block:nth-child(3) { animation-delay: 0.15s; }
+  .day-block:nth-child(4) { animation-delay: 0.2s; }
+  .day-block:nth-child(5) { animation-delay: 0.25s; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media(max-width: 500px) {
+    .ev-card { flex-wrap: wrap; }
+    .ev-actions { width: 100%; justify-content: flex-end; margin-top: 2px; }
   }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-eyebrow">✈ TRAVEL ITINERARY · 예약번호 E2MW8T</div>
-  <div class="hero-title">방콕 여행 🌴</div>
-  <div class="hero-sub">2025년 4월 30일(목) — 5월 4일(월) · 4박 5일</div>
-  <div class="hero-meta">
-    <div class="meta-pill">🛫 ICN → BKK</div>
-    <div class="meta-pill">🏨 2개 호텔</div>
-    <div class="meta-pill">👥 2인 여행</div>
-    <div class="meta-pill">✈ Cathay Pacific</div>
-  </div>
-</div>
+<!-- Background -->
+<div class="bg-layer"></div>
 
-<div class="main">
-  <!-- SCHEDULE -->
-  <div class="schedule-panel">
-    <div class="section-label">일정표</div>
-    <div id="schedule-container">
+<!-- Wat Arun SVG silhouette -->
+<svg class="temple-deco" viewBox="0 0 320 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M160 20 L170 80 L190 100 L200 140 L210 160 L220 200 L240 220 L260 240 L280 260 L290 300 L300 340 L20 340 L30 300 L40 260 L60 240 L80 220 L100 200 L110 160 L120 140 L130 100 L150 80 Z" fill="#1565A0"/>
+  <path d="M160 40 L166 85 L178 105 L185 145 L195 165 L205 210 L220 230 L240 250 L255 280 L260 340 L60 340 L65 280 L80 250 L100 230 L115 210 L125 165 L135 145 L142 105 L154 85 Z" fill="#1976D2"/>
+  <rect x="140" y="330" width="40" height="50" fill="#1565A0"/>
+  <rect x="80" y="330" width="25" height="50" fill="#1565A0"/>
+  <rect x="215" y="330" width="25" height="50" fill="#1565A0"/>
+</svg>
 
-      <!-- DAY 1 -->
-      <div class="day-block" id="day-0430">
-        <div class="day-header">
-          <div class="day-date">04월 30일 (목)</div>
-          <div class="day-label">Day 1 — 출발 & 방콕 도착</div>
-          <div class="day-hotel-badge">소 방콕</div>
-        </div>
-        <div class="timeline">
-          <div class="event flight">
-            <div class="event-icon">🛫</div>
-            <div class="event-body">
-              <div class="event-name">ICN → HKG (경유)</div>
-              <div class="event-desc">CX427 · 인천 출발 → 홍콩 도착 04:45</div>
-            </div>
-            <div class="event-time">01:55</div>
-            <div class="event-tag tag-flight">항공</div>
-          </div>
-          <div class="event flight">
-            <div class="event-icon">✈️</div>
-            <div class="event-body">
-              <div class="event-name">HKG → BKK</div>
-              <div class="event-desc">CX705 · 홍콩 출발 → 방콕 도착 10:00</div>
-            </div>
-            <div class="event-time">08:00</div>
-            <div class="event-tag tag-flight">항공</div>
-          </div>
-          <div class="event hotel-check">
-            <div class="event-icon">🏨</div>
-            <div class="event-body">
-              <div class="event-name">소 방콕 체크인</div>
-              <div class="event-desc">So Bangkok · 수영장, 바, 식당 · ★4.6</div>
-            </div>
-            <div class="event-time">13:00</div>
-            <div class="event-tag tag-hotel">호텔</div>
-          </div>
-          <button class="add-event-btn" onclick="suggestToChat('4월 30일')">+ 일정 추가하기</button>
-        </div>
+<div class="wrap">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">✈ 방콕 여행 플래너</div>
+      <div class="hero-title">Bangkok<br><span>4박 5일</span></div>
+      <div class="hero-sub">2025년 4월 30일 — 5월 4일 · 재혁이와 함께</div>
+      <div class="hero-pills">
+        <div class="pill">🛫 ICN → BKK</div>
+        <div class="pill">🏨 5성급 2곳</div>
+        <div class="pill">✈ Cathay Pacific</div>
+        <div class="pill">👥 2인</div>
       </div>
-
-      <!-- DAY 2 -->
-      <div class="day-block" id="day-0501">
-        <div class="day-header">
-          <div class="day-date">05월 01일 (금)</div>
-          <div class="day-label">Day 2</div>
-          <div class="day-hotel-badge">소 방콕</div>
-        </div>
-        <div class="timeline">
-          <div class="event free">
-            <div class="event-icon">🌅</div>
-            <div class="event-body">
-              <div class="event-name">자유 일정</div>
-              <div class="event-desc">아래 채팅으로 일정을 추가해보세요!</div>
-            </div>
-            <div class="event-time">종일</div>
-            <div class="event-tag tag-free">미정</div>
-          </div>
-          <button class="add-event-btn" onclick="suggestToChat('5월 1일')">+ 일정 추가하기</button>
-        </div>
-      </div>
-
-      <!-- DAY 3 -->
-      <div class="day-block" id="day-0502">
-        <div class="day-header">
-          <div class="day-date">05월 02일 (토)</div>
-          <div class="day-label">Day 3 — 호텔 이동</div>
-          <div class="day-hotel-badge" style="color:var(--accent);border-color:rgba(232,115,74,0.3);background:rgba(232,115,74,0.1)">위 호텔 이동</div>
-        </div>
-        <div class="timeline">
-          <div class="event free">
-            <div class="event-icon">🌞</div>
-            <div class="event-body">
-              <div class="event-name">자유 일정</div>
-              <div class="event-desc">소 방콕 체크아웃 후 위 호텔 이동</div>
-            </div>
-            <div class="event-time">종일</div>
-            <div class="event-tag tag-free">미정</div>
-          </div>
-          <div class="event hotel-check">
-            <div class="event-icon">🏨</div>
-            <div class="event-body">
-              <div class="event-name">위 호텔 방콕 체크인</div>
-              <div class="event-desc">Viu Hotel · 루프탑 수영장 · ★4.6</div>
-            </div>
-            <div class="event-time">14:00</div>
-            <div class="event-tag tag-hotel">호텔</div>
-          </div>
-          <button class="add-event-btn" onclick="suggestToChat('5월 2일')">+ 일정 추가하기</button>
-        </div>
-      </div>
-
-      <!-- DAY 4 -->
-      <div class="day-block" id="day-0503">
-        <div class="day-header">
-          <div class="day-date">05월 03일 (일)</div>
-          <div class="day-label">Day 4</div>
-          <div class="day-hotel-badge" style="color:var(--accent);border-color:rgba(232,115,74,0.3);background:rgba(232,115,74,0.1)">위 호텔</div>
-        </div>
-        <div class="timeline">
-          <div class="event free">
-            <div class="event-icon">🌞</div>
-            <div class="event-body">
-              <div class="event-name">자유 일정</div>
-              <div class="event-desc">아래 채팅으로 일정을 추가해보세요!</div>
-            </div>
-            <div class="event-time">종일</div>
-            <div class="event-tag tag-free">미정</div>
-          </div>
-          <button class="add-event-btn" onclick="suggestToChat('5월 3일')">+ 일정 추가하기</button>
-        </div>
-      </div>
-
-      <!-- DAY 5 -->
-      <div class="day-block" id="day-0504">
-        <div class="day-header">
-          <div class="day-date">05월 04일 (월)</div>
-          <div class="day-label">Day 5 — 귀국</div>
-        </div>
-        <div class="timeline">
-          <div class="event hotel-check">
-            <div class="event-icon">🧳</div>
-            <div class="event-body">
-              <div class="event-name">위 호텔 체크아웃</div>
-              <div class="event-desc">공항 이동 준비</div>
-            </div>
-            <div class="event-time">10:00</div>
-            <div class="event-tag tag-hotel">호텔</div>
-          </div>
-          <div class="event flight">
-            <div class="event-icon">🛫</div>
-            <div class="event-body">
-              <div class="event-name">BKK → HKG (경유)</div>
-              <div class="event-desc">CX774 · 방콕 출발 → 홍콩 도착 16:15</div>
-            </div>
-            <div class="event-time">12:10</div>
-            <div class="event-tag tag-flight">항공</div>
-          </div>
-          <div class="event flight">
-            <div class="event-icon">🛬</div>
-            <div class="event-body">
-              <div class="event-name">HKG → ICN</div>
-              <div class="event-desc">CX430 · 홍콩 출발 → 서울 도착 22:25</div>
-            </div>
-            <div class="event-time">17:40</div>
-            <div class="event-tag tag-flight">항공</div>
-          </div>
-          <button class="add-event-btn" onclick="suggestToChat('5월 4일')">+ 일정 추가하기</button>
-        </div>
-      </div>
-
     </div>
+    <div class="booking-badge">예약번호 E2MW8T</div>
   </div>
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
+  <!-- MAIN GRID -->
+  <div class="main-grid">
 
-    <!-- Flight Info -->
-    <div class="info-card">
-      <div class="info-card-title">✈ 항공 정보</div>
-      <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
-        <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-family:'Space Mono',monospace;">▶ 04.30 출발</div>
-        <div class="flight-row">
-          <span class="flight-code">CX427</span>
-          <span class="flight-route"><span class="airport">ICN</span><span class="flight-arrow">→</span><span class="airport">HKG</span></span>
-          <span class="flight-time">01:55</span>
-        </div>
-        <div class="flight-row">
-          <span class="flight-code">CX705</span>
-          <span class="flight-route"><span class="airport">HKG</span><span class="flight-arrow">→</span><span class="airport">BKK</span></span>
-          <span class="flight-time">08:00</span>
-        </div>
+    <!-- SCHEDULE -->
+    <div class="glass-card">
+      <div class="card-header">
+        <div class="card-header-icon">🗓</div>
+        <div class="card-header-title">여행 일정</div>
       </div>
-      <div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:8px;font-family:'Space Mono',monospace;">◀ 05.04 귀국</div>
-        <div class="flight-row">
-          <span class="flight-code">CX774</span>
-          <span class="flight-route"><span class="airport">BKK</span><span class="flight-arrow">→</span><span class="airport">HKG</span></span>
-          <span class="flight-time">12:10</span>
+      <div class="schedule-wrap">
+        <div class="api-banner">
+          ⚙️ AI 비서 사용을 위해 HTML 파일 내 <strong style="font-weight:700">AIzaSyBzvAfkREEd_DViZdCnf79iVmDIt-wfXe0</strong> 값을 본인 키로 교체해주세요.
         </div>
-        <div class="flight-row">
-          <span class="flight-code">CX430</span>
-          <span class="flight-route"><span class="airport">HKG</span><span class="flight-arrow">→</span><span class="airport">ICN</span></span>
-          <span class="flight-time">17:40</span>
-        </div>
+        <div id="days-container"></div>
       </div>
     </div>
 
-    <!-- Hotel Info -->
-    <div class="info-card">
-      <div class="info-card-title">🏨 숙소 정보</div>
-      <div class="hotel-row">
-        <div class="hotel-icon">🌊</div>
-        <div class="hotel-info">
-          <div class="hotel-name">소 방콕 (So Bangkok)</div>
-          <div class="hotel-dates">04.30 → 05.02 · 2박</div>
-          <div class="hotel-stars">★★★★★ 4.6 · 6,815개 리뷰</div>
-        </div>
-      </div>
-      <div class="hotel-row">
-        <div class="hotel-icon">🏙️</div>
-        <div class="hotel-info">
-          <div class="hotel-name">위 호텔 방콕 (Viu Hotel)</div>
-          <div class="hotel-dates">05.02 → 05.04 · 2박</div>
-          <div class="hotel-stars">★★★★★ 4.6 · 2,938개 리뷰</div>
-        </div>
-      </div>
-    </div>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
 
-    <!-- AI Chat -->
-    <div class="info-card" style="padding:0;overflow:hidden;">
-      <div class="chat-box">
+      <!-- Flight -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-header-icon">✈️</div>
+          <div class="card-header-title">항공 정보</div>
+        </div>
+        <div class="flight-seg-label">출발 · 04.30</div>
+        <div class="flight-seg">
+          <div class="f-row"><span class="f-code">CX427</span><span class="f-route"><span class="f-ap">ICN</span><span class="f-arrow">→</span><span class="f-ap">HKG</span></span><span class="f-time">01:55</span></div>
+          <div class="f-row"><span class="f-code">CX705</span><span class="f-route"><span class="f-ap">HKG</span><span class="f-arrow">→</span><span class="f-ap">BKK</span></span><span class="f-time">08:00</span></div>
+        </div>
+        <div class="flight-seg-label">귀국 · 05.04</div>
+        <div class="flight-seg">
+          <div class="f-row"><span class="f-code">CX774</span><span class="f-route"><span class="f-ap">BKK</span><span class="f-arrow">→</span><span class="f-ap">HKG</span></span><span class="f-time">12:10</span></div>
+          <div class="f-row"><span class="f-code">CX430</span><span class="f-route"><span class="f-ap">HKG</span><span class="f-arrow">→</span><span class="f-ap">ICN</span></span><span class="f-time">17:40</span></div>
+        </div>
+      </div>
+
+      <!-- Hotels -->
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-header-icon">🏨</div>
+          <div class="card-header-title">숙소</div>
+        </div>
+        <div class="hotel-item">
+          <div class="hotel-emoji">🌊</div>
+          <div>
+            <div class="hotel-name">소 방콕</div>
+            <div class="hotel-dates">04.30 → 05.02 · 2박</div>
+            <div class="hotel-stars">★ 4.6 · 6,815개 리뷰</div>
+          </div>
+          <a class="map-btn" onclick="openMap('소 방콕 Bangkok','So Bangkok Hotel 2 North Sathorn Rd Bangkok','13.7202,100.5448')" style="margin-left:auto;align-self:center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            지도
+          </a>
+        </div>
+        <div class="hotel-item">
+          <div class="hotel-emoji">🏙️</div>
+          <div>
+            <div class="hotel-name">위 호텔 방콕</div>
+            <div class="hotel-dates">05.02 → 05.04 · 2박</div>
+            <div class="hotel-stars">★ 4.6 · 2,938개 리뷰</div>
+          </div>
+          <a class="map-btn" onclick="openMap('위 호텔 방콕','Viu Hotel Bangkok MGallery Collection','13.7463,100.5353')" style="margin-left:auto;align-self:center">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            지도
+          </a>
+        </div>
+      </div>
+
+      <!-- Chat -->
+      <div class="chat-card">
         <div class="chat-header">
           <div class="chat-avatar">🤖</div>
           <div>
-            <div class="chat-title">여행 비서 AI</div>
-            <div class="chat-subtitle">일정 추가 · 수정 · 추천</div>
+            <div class="chat-hdr-title">여행 비서 AI</div>
+            <div class="chat-hdr-sub">일정 추가 · 수정 · 추천</div>
           </div>
-          <div class="chat-status"></div>
+          <div class="chat-online"><div class="online-dot"></div>온라인</div>
         </div>
-        <div class="chat-messages" id="chat-messages">
+        <div class="chat-msgs" id="chat-msgs">
           <div class="msg ai">
-            <div class="msg-avatar">🤖</div>
-            <div class="msg-bubble">안녕하세요! 방콕 여행 비서예요 🌴<br><br>일정에 추가하고 싶은 것들을 말씀해주시면 바로 반영해드릴게요.<br><br>예) "5월 1일 저녁에 루프탑 바 추가해줘" 또는 "왓 포 사원 언제 가면 좋아?"</div>
+            <div class="msg-av">AI</div>
+            <div class="bubble">안녕하세요! 방콕 여행 비서예요 🌴<br><br>일정 추가나 수정은 여기서 말씀해주세요. 바로 왼쪽 스케줄에 반영해드릴게요!</div>
           </div>
         </div>
-        <div class="suggestions" id="suggestions">
-          <div class="suggestion-chip" onclick="sendSuggestion('방콕 맛집 추천해줘')">🍜 맛집 추천</div>
-          <div class="suggestion-chip" onclick="sendSuggestion('왓 포, 왓 아룬 일정 넣어줘')">🛕 사원 투어</div>
-          <div class="suggestion-chip" onclick="sendSuggestion('쇼핑 일정 추가해줘')">🛍️ 쇼핑</div>
-          <div class="suggestion-chip" onclick="sendSuggestion('마사지 일정 언제가 좋아?')">💆 마사지</div>
+        <div class="chip-row" id="chip-row">
+          <div class="chip" onclick="qs('맛집 추천해줘')">🍜 맛집</div>
+          <div class="chip" onclick="qs('왓 포 사원 일정 넣어줘')">🛕 사원</div>
+          <div class="chip" onclick="qs('마사지 일정 추가해줘')">💆 마사지</div>
+          <div class="chip" onclick="qs('루프탑 바 추천해줘')">🍸 루프탑</div>
+          <div class="chip" onclick="qs('쇼핑 일정 추가해줘')">🛍️ 쇼핑</div>
         </div>
         <div class="chat-input-row">
-          <textarea class="chat-input" id="chat-input" placeholder="일정을 추가하거나 수정해보세요..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-          <button class="send-btn" id="send-btn" onclick="sendMessage()">➤</button>
+          <textarea class="chat-in" id="chat-in" rows="1" placeholder="일정 추가하거나 물어보세요..." onkeydown="ck(event)" oninput="ar(this)"></textarea>
+          <button class="send-btn" id="sbtn" onclick="send()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
         </div>
       </div>
     </div>
+  </div>
+</div>
 
+<!-- MAP MODAL -->
+<div class="map-modal-overlay" id="map-overlay" onclick="closeMapOutside(event)">
+  <div class="map-modal" id="map-modal">
+    <div class="map-modal-header">
+      <div style="font-size:18px">📍</div>
+      <div class="map-modal-title" id="map-title">위치</div>
+      <div class="map-close-btn" onclick="closeMap()">✕</div>
+    </div>
+    <div class="map-frame-wrap">
+      <iframe id="map-frame" src="" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <a id="map-ext-link" href="#" target="_blank" class="map-open-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      구글 지도에서 열기
+    </a>
   </div>
 </div>
 
 <script>
-// ===== SCHEDULE DATA =====
-const scheduleData = {
+// ============ SCHEDULE DATA ============
+const SD = {
   "0430": {
-    label: "04월 30일 (목)", sub: "Day 1 — 출발 & 방콕 도착", hotel: "소 방콕", hotelColor: "teal",
-    events: [
-      { time: "01:55", icon: "🛫", name: "ICN → HKG (경유)", desc: "CX427 · 인천 출발 → 홍콩 도착 04:45", type: "flight", tag: "항공" },
-      { time: "08:00", icon: "✈️", name: "HKG → BKK", desc: "CX705 · 홍콩 출발 → 방콕 도착 10:00", type: "flight", tag: "항공" },
-      { time: "13:00", icon: "🏨", name: "소 방콕 체크인", desc: "So Bangkok · 수영장, 바, 식당 · ★4.6", type: "hotel-check", tag: "호텔" },
+    label:"04월 30일 (목)", dayNum:"1", sub:"출발 & 방콕 도착", hotel:"소 방콕", hc:"ht-teal",
+    events:[
+      {time:"01:55", icon:"✈️", name:"ICN → HKG 출발", desc:"CX427 · 인천 → 홍콩 04:45", type:"flight", tag:"항공", mapQ:"인천국제공항", mapLL:"37.4602,126.4407"},
+      {time:"08:00", icon:"✈️", name:"HKG → BKK 출발", desc:"CX705 · 홍콩 → 방콕 10:00", type:"flight", tag:"항공", mapQ:"Hong Kong International Airport", mapLL:"22.3080,113.9185"},
+      {time:"13:00", icon:"🏨", name:"소 방콕 체크인", desc:"So Bangkok · 수영장, 바, 식당 · ★4.6", type:"hotel", tag:"호텔", mapQ:"So Bangkok Hotel 2 North Sathorn Rd", mapLL:"13.7202,100.5448"},
     ]
   },
-  "0501": {
-    label: "05월 01일 (금)", sub: "Day 2", hotel: "소 방콕", hotelColor: "teal",
-    events: []
-  },
+  "0501": { label:"05월 01일 (금)", dayNum:"2", sub:"자유 일정", hotel:"소 방콕", hc:"ht-teal", events:[] },
   "0502": {
-    label: "05월 02일 (토)", sub: "Day 3 — 호텔 이동", hotel: "위 호텔 이동", hotelColor: "accent",
-    events: [
-      { time: "12:00", icon: "🧳", name: "소 방콕 체크아웃", desc: "짐 정리 후 이동", type: "hotel-check", tag: "호텔" },
-      { time: "14:00", icon: "🏨", name: "위 호텔 방콕 체크인", desc: "Viu Hotel · 루프탑 수영장 · ★4.6", type: "hotel-check", tag: "호텔" },
+    label:"05월 02일 (토)", dayNum:"3", sub:"호텔 이동", hotel:"위 호텔 이동", hc:"ht-gold",
+    events:[
+      {time:"12:00", icon:"🧳", name:"소 방콕 체크아웃", desc:"짐 정리 후 이동", type:"hotel", tag:"호텔", mapQ:"So Bangkok Hotel Bangkok", mapLL:"13.7202,100.5448"},
+      {time:"14:00", icon:"🏨", name:"위 호텔 방콕 체크인", desc:"Viu Hotel · 루프탑 수영장 · ★4.6", type:"hotel", tag:"호텔", mapQ:"Viu Hotel Bangkok MGallery", mapLL:"13.7463,100.5353"},
     ]
   },
-  "0503": {
-    label: "05월 03일 (일)", sub: "Day 4", hotel: "위 호텔", hotelColor: "accent",
-    events: []
-  },
+  "0503": { label:"05월 03일 (일)", dayNum:"4", sub:"자유 일정", hotel:"위 호텔", hc:"ht-gold", events:[] },
   "0504": {
-    label: "05월 04일 (월)", sub: "Day 5 — 귀국", hotel: null,
-    events: [
-      { time: "10:00", icon: "🧳", name: "위 호텔 체크아웃", desc: "공항 이동 준비", type: "hotel-check", tag: "호텔" },
-      { time: "12:10", icon: "🛫", name: "BKK → HKG (경유)", desc: "CX774 · 방콕 출발 → 홍콩 도착 16:15", type: "flight", tag: "항공" },
-      { time: "17:40", icon: "🛬", name: "HKG → ICN", desc: "CX430 · 홍콩 출발 → 서울 도착 22:25", type: "flight", tag: "항공" },
+    label:"05월 04일 (월)", dayNum:"5", sub:"귀국", hotel:null,
+    events:[
+      {time:"10:00", icon:"🧳", name:"위 호텔 체크아웃", desc:"공항 이동 준비", type:"hotel", tag:"호텔", mapQ:"Viu Hotel Bangkok MGallery", mapLL:"13.7463,100.5353"},
+      {time:"12:10", icon:"✈️", name:"BKK → HKG 출발", desc:"CX774 · 방콕 → 홍콩 16:15", type:"flight", tag:"항공", mapQ:"Suvarnabhumi Airport Bangkok", mapLL:"13.6900,100.7501"},
+      {time:"17:40", icon:"✈️", name:"HKG → ICN 출발", desc:"CX430 · 홍콩 → 서울 22:25", type:"flight", tag:"항공", mapQ:"Hong Kong International Airport", mapLL:"22.3080,113.9185"},
     ]
   }
 };
 
-// Tag type mapping
-const tagMap = { flight: "tag-flight", "hotel-check": "tag-hotel", meal: "tag-food", activity: "tag-spot", free: "tag-free" };
-const tagLabel = { flight: "항공", "hotel-check": "호텔", meal: "식사", activity: "관광", free: "미정" };
+const GEMINI_API_KEY = "여기에_API키_입력";
 
-function renderSchedule() {
-  const container = document.getElementById("schedule-container");
-  container.innerHTML = "";
-  const days = ["0430","0501","0502","0503","0504"];
-  days.forEach(day => {
-    const d = scheduleData[day];
-    const hotelBadge = d.hotel ? `<div class="day-hotel-badge" ${d.hotelColor === "accent" ? 'style="color:var(--accent);border-color:rgba(232,115,74,0.3);background:rgba(232,115,74,0.1)"' : ""}>${d.hotel}</div>` : "";
-    
-    let eventsHtml = "";
+const TAG_CLS = {flight:"tag-flight", hotel:"tag-hotel", meal:"tag-food", activity:"tag-activity", free:"tag-free"};
+const ICON_CLS = {flight:"icon-flight", hotel:"icon-hotel", meal:"icon-meal", activity:"icon-activity", free:"icon-free"};
+const TYPE_CLS = {flight:"type-flight", hotel:"type-hotel", meal:"type-meal", activity:"type-activity", free:"type-free"};
+const TAG_LABEL = {flight:"항공", hotel:"호텔", meal:"식사", activity:"관광", free:"미정"};
+
+function mapBtnHtml(e) {
+  if (!e.mapQ) return "";
+  return `<button class="map-btn" onclick="openMap('${e.name.replace(/'/g,"\\'")}','${e.mapQ}','${e.mapLL||''}')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    지도
+  </button>`;
+}
+
+function render() {
+  const c = document.getElementById("days-container");
+  c.innerHTML = "";
+  ["0430","0501","0502","0503","0504"].forEach(dk => {
+    const d = SD[dk];
     const sorted = [...d.events].sort((a,b) => a.time.localeCompare(b.time));
+    let evHtml = "";
     if (sorted.length === 0) {
-      eventsHtml = `<div class="event free">
-        <div class="event-icon">🌞</div>
-        <div class="event-body"><div class="event-name">자유 일정</div><div class="event-desc">아래 채팅으로 일정을 추가해보세요!</div></div>
-        <div class="event-time">종일</div>
-        <div class="event-tag tag-free">미정</div>
+      evHtml = `<div class="ev-card type-free">
+        <div class="ev-card" style="border:none;padding:0;background:transparent;">
+          <div class="ev-icon icon-free">🌞</div>
+          <div class="ev-body"><div class="ev-name">자유 일정</div><div class="ev-desc">채팅으로 일정을 추가해보세요!</div></div>
+          <div class="ev-tag tag-free">미정</div>
+        </div>
+      </div>`;
+      // simpler free card
+      evHtml = `<div class="ev-card type-free">
+        <div class="ev-time">종일</div>
+        <div class="ev-icon icon-free">🌞</div>
+        <div class="ev-body"><div class="ev-name">자유 일정</div><div class="ev-desc">채팅으로 일정을 추가해보세요!</div></div>
+        <div class="ev-tag tag-free">미정</div>
       </div>`;
     } else {
       sorted.forEach(e => {
-        const cls = tagMap[e.type] || "tag-free";
-        const lbl = e.tag || tagLabel[e.type] || "기타";
-        eventsHtml += `<div class="event ${e.type}">
-          <div class="event-icon">${e.icon}</div>
-          <div class="event-body">
-            <div class="event-name">${e.name}</div>
-            <div class="event-desc">${e.desc}</div>
+        const tc = TYPE_CLS[e.type] || "type-free";
+        const ic = ICON_CLS[e.type] || "icon-free";
+        const tagc = TAG_CLS[e.type] || "tag-free";
+        const tagl = e.tag || TAG_LABEL[e.type] || "기타";
+        evHtml += `<div class="ev-card ${tc}">
+          <div class="ev-time">${e.time}</div>
+          <div class="ev-icon ${ic}">${e.icon}</div>
+          <div class="ev-body">
+            <div class="ev-name">${e.name}</div>
+            <div class="ev-desc">${e.desc}</div>
           </div>
-          <div class="event-time">${e.time}</div>
-          <div class="event-tag ${cls}">${lbl}</div>
+          <div class="ev-actions">
+            ${mapBtnHtml(e)}
+            <div class="ev-tag ${tagc}">${tagl}</div>
+          </div>
         </div>`;
       });
     }
-
-    const dayLabel = day.slice(0,2) + "월 " + day.slice(2) + "일";
-    container.innerHTML += `
-      <div class="day-block" id="day-${day}">
-        <div class="day-header">
-          <div class="day-date">${d.label}</div>
-          <div class="day-label">${d.sub}</div>
-          ${hotelBadge}
+    const badge = d.hotel ? `<div class="day-hotel-tag ${d.hc}">${d.hotel}</div>` : "";
+    c.innerHTML += `<div class="day-block">
+      <div class="day-title-row">
+        <div class="day-number">${d.dayNum}</div>
+        <div class="day-info">
+          <div class="day-date-txt">${d.label}</div>
+          <div class="day-label-txt">${d.sub}</div>
         </div>
-        <div class="timeline">
-          ${eventsHtml}
-          <button class="add-event-btn" onclick="suggestToChat('${d.label.split(' ')[0]}')">+ 일정 추가하기</button>
-        </div>
-      </div>`;
+        ${badge}
+      </div>
+      <div class="timeline">
+        ${evHtml}
+        <button class="add-btn" onclick="fillChat('${d.label}')">＋ 일정 추가</button>
+      </div>
+    </div>`;
   });
 }
 
-// ===== CHAT =====
-const SYSTEM_PROMPT = `당신은 방콕 여행 일정 비서입니다. 현재 여행 일정:
+// ============ MAP ============
+function openMap(title, query, latLng) {
+  document.getElementById("map-title").textContent = title;
+  const q = encodeURIComponent(query);
+  let src = "";
+  if (latLng) {
+    const [lat, lng] = latLng.split(",");
+    src = `https://maps.google.com/maps?q=${lat},${lng}&z=16&output=embed`;
+  } else {
+    src = `https://maps.google.com/maps?q=${q}&output=embed`;
+  }
+  document.getElementById("map-frame").src = src;
+  document.getElementById("map-ext-link").href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+  document.getElementById("map-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeMap() {
+  document.getElementById("map-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+  setTimeout(() => { document.getElementById("map-frame").src = ""; }, 300);
+}
+function closeMapOutside(e) {
+  if (e.target === document.getElementById("map-overlay")) closeMap();
+}
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeMap(); });
+
+// ============ CHAT ============
+const SYS = `당신은 방콕 여행 일정 비서입니다. 현재 일정:
 - 4/30(목): ICN→HKG(CX427 01:55)→BKK(CX705 08:00, 도착10:00), 소 방콕 체크인
-- 4/30~5/2: 소 방콕 (So Bangkok, 5성급 ★4.6)
-- 5/2(토): 소 방콕 체크아웃 → 위 호텔 방콕 체크인 (Viu Hotel, 5성급 ★4.6, 루프탑 수영장)
-- 5/2~5/4: 위 호텔 방콕
+- 4/30~5/2: 소 방콕 (So Bangkok, 5성급 ★4.6, North Sathorn Rd)
+- 5/2(토): 소 방콕 체크아웃 → 위 호텔 방콕 체크인 (Viu Hotel MGallery)
+- 5/2~5/4: 위 호텔 방콕 (루프탑 수영장, ★4.6)
 - 5/4(월): BKK→HKG(CX774 12:10)→ICN(CX430 17:40, 도착22:25)
 
 사용자가 일정 추가/수정을 요청하면:
-1. 친근하고 간결하게 답변 (2-3문장)
-2. 반드시 마지막에 JSON 블록을 포함: \`\`\`json
-{"action":"add_event","day":"MMDD","event":{"time":"HH:MM","icon":"이모지","name":"이름","desc":"설명","type":"activity|meal|hotel-check|flight|free","tag":"관광|식사|호텔|항공|미정"}}
+1. 친근하고 간결하게 한국어로 답변 (1-2문장)
+2. 반드시 마지막에 JSON 포함:
+\`\`\`json
+{"action":"add_event","day":"MMDD","event":{"time":"HH:MM","icon":"이모지","name":"장소명","desc":"간단설명","type":"activity|meal|hotel|flight|free","tag":"관광|식사|호텔|항공|미정","mapQ":"구글지도 검색어 영어","mapLL":"위도,경도"}}
 \`\`\`
-일정 추가가 아닌 추천/정보 질문은 JSON 없이 답변만 합니다.
-답변은 항상 한국어로 합니다.`;
+day는 0430/0501/0502/0503/0504 중 하나. mapLL은 정확한 위도,경도(소수점 4자리).
+단순 질문/추천은 JSON 없이 답변만. 항상 한국어로 답변.`;
 
-let isLoading = false;
+let busy = false;
 
-async function sendMessage(text) {
-  const input = document.getElementById("chat-input");
-  const msg = text || input.value.trim();
-  if (!msg || isLoading) return;
-  
-  input.value = "";
-  input.style.height = "auto";
-  addMessage("user", msg);
-  document.getElementById("suggestions").style.display = "none";
-  setLoading(true);
+async function send(txt) {
+  const inp = document.getElementById("chat-in");
+  const msg = txt || inp.value.trim();
+  if (!msg || busy) return;
+  inp.value = ""; inp.style.height = "auto";
+  addMsg("user", msg);
+  document.getElementById("chip-row").style.display = "none";
+  setBusy(true);
+
+  if (GEMINI_API_KEY === "여기에_API키_입력") {
+    await new Promise(r => setTimeout(r, 600));
+    addMsg("ai", "⚙️ API 키가 설정되지 않았어요!\n\nHTML 파일을 메모장으로 열어서\n<strong>GEMINI_API_KEY = \"여기에_API키_입력\"</strong>\n부분을 본인 키로 바꿔주세요.");
+    setBusy(false);
+    return;
+  }
 
   try {
-    const res = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: [{ role: "user", content: msg }]
-      })
-    });
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: SYS }] },
+          contents: [{ role: "user", parts: [{ text: msg }] }]
+        })
+      }
+    );
     const data = await res.json();
-    const reply = data.content?.map(b => b.text || "").join("") || "죄송해요, 응답을 받지 못했어요.";
-    
-    // Parse JSON action
-    const jsonMatch = reply.match(/```json\s*([\s\S]*?)```/);
-    const cleanReply = reply.replace(/```json[\s\S]*?```/g, "").trim();
-    
-    addMessage("ai", cleanReply || "일정을 업데이트했어요!");
-    
-    if (jsonMatch) {
+    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "응답을 받지 못했어요.";
+    const jm = reply.match(/```json\s*([\s\S]*?)```/);
+    const clean = reply.replace(/```json[\s\S]*?```/g, "").trim();
+    addMsg("ai", clean || "일정을 업데이트했어요!");
+    if (jm) {
       try {
-        const action = JSON.parse(jsonMatch[1]);
-        if (action.action === "add_event" && action.day && action.event) {
-          const dayKey = action.day;
-          if (scheduleData[dayKey]) {
-            scheduleData[dayKey].events.push(action.event);
-            renderSchedule();
-            // Scroll to day
-            setTimeout(() => {
-              const el = document.getElementById("day-" + dayKey);
-              if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-            }, 200);
-          }
+        const a = JSON.parse(jm[1]);
+        if (a.action === "add_event" && SD[a.day]) {
+          SD[a.day].events.push(a.event);
+          render();
+          setTimeout(() => {
+            const blocks = document.querySelectorAll(".day-block");
+            const dayIdx = ["0430","0501","0502","0503","0504"].indexOf(a.day);
+            if (blocks[dayIdx]) blocks[dayIdx].scrollIntoView({ behavior:"smooth", block:"center" });
+          }, 200);
         }
       } catch(e) {}
     }
   } catch(e) {
-    addMessage("ai", "네트워크 오류가 발생했어요. 잠시 후 다시 시도해주세요.");
+    addMsg("ai", "네트워크 오류가 발생했어요. 잠시 후 다시 시도해주세요.");
   }
-  setLoading(false);
+  setBusy(false);
 }
 
-function addMessage(role, text) {
-  const container = document.getElementById("chat-messages");
-  const div = document.createElement("div");
-  div.className = `msg ${role}`;
-  div.innerHTML = `
-    <div class="msg-avatar">${role === "ai" ? "🤖" : "👤"}</div>
-    <div class="msg-bubble">${text.replace(/\n/g, "<br>")}</div>`;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
+function addMsg(role, txt) {
+  const c = document.getElementById("chat-msgs");
+  const d = document.createElement("div");
+  d.className = "msg " + role;
+  d.innerHTML = `<div class="msg-av">${role==="ai"?"AI":"나"}</div><div class="bubble">${txt.replace(/\n/g,"<br>")}</div>`;
+  c.appendChild(d);
+  c.scrollTop = c.scrollHeight;
 }
 
-function setLoading(v) {
-  isLoading = v;
-  document.getElementById("send-btn").disabled = v;
-  const existing = document.getElementById("typing");
-  if (v) {
+function setBusy(v) {
+  busy = v;
+  document.getElementById("sbtn").disabled = v;
+  const ex = document.getElementById("typ-el");
+  if (v && !ex) {
     const t = document.createElement("div");
-    t.id = "typing";
-    t.className = "msg ai";
-    t.innerHTML = `<div class="msg-avatar">🤖</div><div class="typing-indicator active"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
-    document.getElementById("chat-messages").appendChild(t);
-    document.getElementById("chat-messages").scrollTop = 99999;
-  } else if (existing) {
-    existing.remove();
-  }
+    t.id = "typ-el"; t.className = "msg ai";
+    t.innerHTML = `<div class="msg-av">AI</div><div class="typing-dots"><div class="td"></div><div class="td"></div><div class="td"></div></div>`;
+    document.getElementById("chat-msgs").appendChild(t);
+    document.getElementById("chat-msgs").scrollTop = 99999;
+  } else if (!v && ex) { ex.remove(); }
 }
 
-function sendSuggestion(text) { sendMessage(text); }
-function suggestToChat(date) {
-  const input = document.getElementById("chat-input");
-  input.value = `${date} 일정 추가해줘 — `;
-  input.focus();
-  autoResize(input);
-}
-function handleKey(e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); } }
-function autoResize(el) { el.style.height = "auto"; el.style.height = Math.min(el.scrollHeight, 80) + "px"; }
+function qs(t) { send(t); }
+function fillChat(d) { const i = document.getElementById("chat-in"); i.value = d + " 일정 추가해줘 — "; i.focus(); ar(i); }
+function ck(e) { if (e.key==="Enter" && !e.shiftKey) { e.preventDefault(); send(); } }
+function ar(el) { el.style.height="auto"; el.style.height=Math.min(el.scrollHeight,80)+"px"; }
 
-// Initial render
-renderSchedule();
+render();
 </script>
 </body>
 </html>
