@@ -767,7 +767,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">✈ 방콕 여행 플래너</div>
       <div class="hero-title">Bangkok<br><span>4박 5일</span></div>
-      <div class="hero-sub">2025년 4월 30일 — 5월 4일 · 재혁이와 함께</div>
+      <div class="hero-sub">2025년 4월 30일 — 5월 4일 · 친구와 함께</div>
       <div class="hero-pills">
         <div class="pill">🛫 ICN → BKK</div>
         <div class="pill">🏨 5성급 2곳</div>
@@ -788,6 +788,8 @@
         <div class="card-header-title">여행 일정</div>
       </div>
       <div class="schedule-wrap">
+        <div id="api-banner-wrap">
+        </div>
         <div id="days-container"></div>
       </div>
     </div>
@@ -927,7 +929,7 @@ const SD = {
   }
 };
 
-const GEMINI_API_KEY = "AIzaSyAk4qgSvdxRoF6JuXjVR5Mb-X42j33IWbw";
+const CLAUDE_API_KEY = "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";
 
 const TAG_CLS = {flight:"tag-flight", hotel:"tag-hotel", meal:"tag-food", activity:"tag-activity", free:"tag-free"};
 const ICON_CLS = {flight:"icon-flight", hotel:"icon-hotel", meal:"icon-meal", activity:"icon-activity", free:"icon-free"};
@@ -1056,27 +1058,33 @@ async function send(txt) {
   document.getElementById("chip-row").style.display = "none";
   setBusy(true);
 
-  if (GEMINI_API_KEY === "여기에_API키_입력") {
+  if (CLAUDE_API_KEY === "여기에_API키_입력") {
     await new Promise(r => setTimeout(r, 600));
-    addMsg("ai", "⚙️ API 키가 설정되지 않았어요!\n\nHTML 파일을 메모장으로 열어서\n<strong>GEMINI_API_KEY = \"여기에_API키_입력\"</strong>\n부분을 본인 키로 바꿔주세요.");
+    addMsg("ai", "⚙️ API 키가 설정되지 않았어요!\n\nHTML 파일을 메모장으로 열어서\n<strong>CLAUDE_API_KEY = \"여기에_API키_입력\"</strong>\n부분을 본인 키로 바꿔주세요.");
     setBusy(false);
     return;
   }
+  const banner = document.getElementById("api-banner");
+  if (banner) banner.style.display = "none";
 
   try {
-    const res = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          system_instruction: { parts: [{ text: SYS }] },
-          contents: [{ role: "user", parts: [{ text: msg }] }]
-        })
-      }
-    );
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-api-key": CLAUDE_API_KEY,
+        "anthropic-version": "2023-06-01",
+        "anthropic-dangerous-direct-browser-access": "true"
+      },
+      body: JSON.stringify({
+        model: "claude-haiku-4-5-20251001",
+        max_tokens: 1000,
+        system: SYS,
+        messages: [{ role: "user", content: msg }]
+      })
+    });
     const data = await res.json();
-    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "응답을 받지 못했어요.";
+    const reply = data.content?.map(b => b.text || "").join("") || "응답을 받지 못했어요.";
     const jm = reply.match(/```json\s*([\s\S]*?)```/);
     const clean = reply.replace(/```json[\s\S]*?```/g, "").trim();
     addMsg("ai", clean || "일정을 업데이트했어요!");
